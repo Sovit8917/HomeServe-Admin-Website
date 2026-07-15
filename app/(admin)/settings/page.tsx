@@ -82,13 +82,18 @@ export default function SettingsPage() {
   }, []);
 
   const handleSave = async () => {
-    setSaving(true);
-    try {
-      await settingsApi.update(settings);
-      toast.success('Settings saved successfully');
-    } catch { toast.success('Settings saved (demo mode)'); }
-    finally { setSaving(false); }
-  };
+  setSaving(true);
+  try {
+    await settingsApi.update(settings);
+    toast.success('Settings saved successfully');
+  } catch (err: any) {
+    toast.error(
+      err?.response?.data?.message || 'Could not save settings. Please try again.',
+    );
+  } finally {
+    setSaving(false);
+  }
+};
 
   if (loading) return <Spinner />;
 
