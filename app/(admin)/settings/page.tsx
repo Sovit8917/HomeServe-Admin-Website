@@ -13,7 +13,7 @@ const DEFAULT_SETTINGS = {
   support_phone: '+91 9876543210',
   support_email: 'support@homeservice.com',
   commission_rate: '15',
-  gst_rate: '18',
+  gst_rate: '0',
   min_booking_amount: '200',
   cancellation_charge: '50',
   free_cancellation_hours: '2',
@@ -41,7 +41,7 @@ const SECTIONS: SettingSection[] = [
     icon: Percent,
     fields: [
       { key: 'commission_rate', label: 'Commission Rate (%)', placeholder: '15', type: 'number' },
-      { key: 'gst_rate', label: 'GST Rate (%)', placeholder: '18', type: 'number' },
+      { key: 'gst_rate', label: 'GST Rate (%)', placeholder: '0', type: 'number' },
       { key: 'worker_payout_min', label: 'Minimum Payout (₹)', placeholder: '500', type: 'number' },
     ]
   },
