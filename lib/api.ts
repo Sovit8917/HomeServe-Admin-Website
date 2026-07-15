@@ -124,7 +124,7 @@ export const couponsApi = {
 
 // ─── Notifications ─────────────────────────────────────────────────────
 export const notificationsApi = {
-  sendBulk: (data: { title: string; body: string; type: string; targetRole?: string }) =>
+  sendBulk: (data: { title: string; body: string; type: string; targetRole?: string; imageUrl?: string }) =>
     api.post('/notifications/send-bulk', data),
 };
 
