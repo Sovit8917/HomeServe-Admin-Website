@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard, Users, HardHat, CalendarCheck, CreditCard,
   Tag, Wrench, Ticket, Bell, Settings, Image, FileBarChart2,
-  LogOut, Zap, ChevronRight
+  LogOut, Zap, ChevronRight, Star
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth-context';
 import { Avatar } from './ui/Avatar';
@@ -34,6 +34,7 @@ const NAV = [
       { href: '/categories', label: 'Categories', icon: Tag },
       { href: '/services', label: 'Services', icon: Wrench },
       { href: '/coupons', label: 'Coupons', icon: Ticket },
+      { href: '/subscriptions', label: 'Subscriptions', icon: Star },
     ]
   },
   {

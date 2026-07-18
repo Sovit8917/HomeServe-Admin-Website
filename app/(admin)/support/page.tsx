@@ -192,20 +192,31 @@ export default function SupportPage() {
                 <div className="py-6"><Spinner /></div>
               ) : (
                 <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
-                  {selected.messages?.length ? selected.messages.map((m: any) => (
-                    <div key={m.id} className={`flex ${m.senderType === 'ADMIN' ? 'justify-end' : 'justify-start'}`}>
-                      <div className={`max-w-[80%] sm:max-w-xs rounded-2xl px-4 py-2.5 text-sm ${
-                        m.senderType === 'ADMIN'
-                          ? 'bg-blue-600 text-white rounded-br-sm'
-                          : 'bg-slate-100 text-slate-700 rounded-bl-sm'
-                      }`}>
-                        <p>{m.message}</p>
-                        <p className={`text-xs mt-1 ${m.senderType === 'ADMIN' ? 'text-blue-200' : 'text-slate-400'}`}>
-                          {new Date(m.createdAt).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
-                        </p>
+                  {selected.messages?.length ? selected.messages.map((m: any) => {
+                    const isAdmin = m.senderType === 'ADMIN';
+                    const isAi = m.senderType === 'AI';
+                    return (
+                      <div key={m.id} className={`flex ${isAdmin ? 'justify-end' : 'justify-start'}`}>
+                        <div className={`max-w-[80%] sm:max-w-xs rounded-2xl px-4 py-2.5 text-sm ${
+                          isAdmin
+                            ? 'bg-blue-600 text-white rounded-br-sm'
+                            : isAi
+                              ? 'bg-indigo-50 text-indigo-900 border border-indigo-100 rounded-bl-sm'
+                              : 'bg-slate-100 text-slate-700 rounded-bl-sm'
+                        }`}>
+                          {isAi && (
+                            <p className="text-[10px] font-semibold text-indigo-500 uppercase tracking-wide mb-1">
+                              AI Assistant (before escalation)
+                            </p>
+                          )}
+                          <p>{m.message}</p>
+                          <p className={`text-xs mt-1 ${isAdmin ? 'text-blue-200' : isAi ? 'text-indigo-400' : 'text-slate-400'}`}>
+                            {new Date(m.createdAt).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  )) : (
+                    );
+                  }) : (
                     <p className="text-sm text-slate-400 text-center py-2">No replies yet — start the conversation below.</p>
                   )}
                 </div>

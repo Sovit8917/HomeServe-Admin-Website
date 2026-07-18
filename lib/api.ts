@@ -122,6 +122,16 @@ export const couponsApi = {
   remove: (id: string) => api.delete(`/coupons/${id}`),
 };
 
+// ─── Subscription Plans ────────────────────────────────────────────────
+export const subscriptionsApi = {
+  listPlans: () => api.get('/subscriptions/admin/plans'),
+  createPlan: (data: any) => api.post('/subscriptions/admin/plans', data),
+  updatePlan: (id: string, data: any) => api.put(`/subscriptions/admin/plans/${id}`, data),
+  deactivatePlan: (id: string) => api.delete(`/subscriptions/admin/plans/${id}`),
+  listSubscribers: (page = 1, limit = 20) =>
+    api.get('/subscriptions/admin/subscribers', { params: { page, limit } }),
+};
+
 // ─── Notifications ─────────────────────────────────────────────────────
 export const notificationsApi = {
   sendBulk: (data: { title: string; body: string; type: string; targetRole?: string; imageUrl?: string }) =>
